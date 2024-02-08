@@ -22,5 +22,5 @@ outputs:
     description: 메시지 ID ('start' phase에서 출력)
 
 runs:
-  using: 'node18'
+  using: 'node20'
   main: 'dist/index.js'
