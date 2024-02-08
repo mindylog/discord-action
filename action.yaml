@@ -1,0 +1,26 @@
+name: '배포 알리미'
+description: '마인디 서비스 배포 알림을 위한 액션입니다.'
+author: mindylog/dohyungp
+
+branding:
+  icon: 'bell'
+  color: 'green'
+
+inputs:
+  service_name:
+    description: '서비스명'
+    required: true
+  environment:
+    description: '배포 환경 (dev, prod)'
+    required: true
+  phase:
+    description: '액션 타입 (start, finish)'
+    required: true
+
+outputs:
+  message_id:
+    description: 메시지 ID ('start' phase에서 출력)
+
+runs:
+  using: 'node18'
+  main: 'dist/index.js'

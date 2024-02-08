@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-action:
+    name: GitHub Actions Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: Test Start Action
+        id: test-start-action
+        uses: ./
+        with:
+          phase: 'start'
+          service_name: discord-action
+          environment: dev
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Print Start Action Output
+        id: message_id
+        run: echo "${{ steps.test-start-action.outputs.message_id }}"
+
+      - name: Sleep for 10 seconds
+        run: sleep 10s
+        shell: bash
+
+      - name: Test Finish Action
+        id: test-finish-action
+        uses: ./
+        with:
+          phase: 'finish'
+          service_name: discord-action
+          environment: dev
+          message_id: ${{ steps.test-start-action.outputs.message_id }}
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISTRIBUTION_SLACKBOT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
