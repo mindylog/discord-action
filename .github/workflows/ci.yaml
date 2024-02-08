@@ -31,8 +31,8 @@ jobs:
         id: message_id
         run: echo "${{ steps.test-start-action.outputs.message_id }}"
 
-      - name: Sleep for 10 seconds
-        run: sleep 10s
+      - name: Sleep for 5 seconds
+        run: sleep 5s
         shell: bash
 
       - name: Test Finish Action
@@ -44,5 +44,5 @@ jobs:
           environment: dev
           message_id: ${{ steps.test-start-action.outputs.message_id }}
         env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISTRIBUTION_SLACKBOT_TOKEN }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
