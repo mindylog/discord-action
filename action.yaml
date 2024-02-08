@@ -16,6 +16,8 @@ inputs:
   phase:
     description: '액션 타입 (start, finish)'
     required: true
+  message_id:
+    description: '쓰레드 달 메시지 ID'
 
 outputs:
   message_id:
