@@ -109907,7 +109907,7 @@ async function main() {
             const embed = new discord_js_1.EmbedBuilder()
                 .setTitle('배포 완료')
                 .setColor(COLORS.SUCCESS);
-            const updatedMessageResponse = await discordClient.editMessage(inputs.message_id, {
+            await discordClient.editMessage(inputs.message_id, {
                 content: buildContent(inputs),
                 embeds: [embed]
             });
@@ -109927,7 +109927,7 @@ function buildContent(inputs) {
     서비스 : ${inputs.service_name}
     배포 환경 : ${inputs.environment}
     진행 상태 : ${(0, ts_pattern_1.match)(inputs.phase)
-        .with('start', () => ':loading: 배포 진행중')
+        .with('start', () => ' :person_running: 배포 진행중')
         .with('finish', () => ':rocket: 배포 완료')
         .otherwise(() => '')}`;
 }
