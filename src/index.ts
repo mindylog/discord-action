@@ -75,7 +75,7 @@ function buildContent(inputs: z.infer<typeof InputSchema>): string {
     서비스 : ${inputs.service_name}
     배포 환경 : ${inputs.environment}
     진행 상태 : ${match(inputs.phase)
-      .with('start', () => ':loading: 배포 진행중')
+      .with('start', () => ' :person_running: 배포 진행중')
       .with('finish', () => ':rocket: 배포 완료')
       .otherwise(() => '')}`
 }
