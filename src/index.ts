@@ -50,13 +50,10 @@ async function main(): Promise<void> {
       const embed = new EmbedBuilder()
         .setTitle('배포 완료')
         .setColor(COLORS.SUCCESS)
-      const updatedMessageResponse = await discordClient.editMessage(
-        inputs.message_id,
-        {
-          content: buildContent(inputs),
-          embeds: [embed]
-        }
-      )
+      await discordClient.editMessage(inputs.message_id, {
+        content: buildContent(inputs),
+        embeds: [embed]
+      })
     }
 
     core.info(
